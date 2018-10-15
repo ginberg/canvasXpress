@@ -31,8 +31,6 @@ test_that("cXlayout7", {
 
 test_that("cXlayout8", {
     check_ui_test(cXlayout8())
-    
-    warning("grouping results in different layout order")
 })
 
 test_that("cXlayout9", {
@@ -41,6 +39,8 @@ test_that("cXlayout9", {
 
 test_that("cXlayout10", {
     check_ui_test(cXlayout10())
+    
+    warning("grouping results in different layout order")
 })
 
 test_that("cXlayout11", {
