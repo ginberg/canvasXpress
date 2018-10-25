@@ -30,7 +30,6 @@ test_that("scatterplot legendposition", {
             legendInside            = legend_inside
         )
         check_ui_test(result)
-        Sys.sleep(5)
     }
 })
 
@@ -47,7 +46,6 @@ test_that("barplot legendposition", {
             legendInside            = legend_inside
         )
         check_ui_test(result)
-        Sys.sleep(5)
     }
 })
 
@@ -68,7 +66,6 @@ test_that("barplot (segregated) legendposition", {
             legendInside            = legend_inside
         )
         check_ui_test(result)
-        Sys.sleep(5)
     }
 })
 
@@ -92,7 +89,6 @@ test_that("boxplot legendposition", {
         )
 
         check_ui_test(result)
-        Sys.sleep(5)
     }
 })
 
@@ -120,7 +116,6 @@ test_that("boxplot (segregated) legendposition", {
         )
 
         check_ui_test(result)
-        Sys.sleep(5)
     }
 })
 
@@ -142,7 +137,6 @@ test_that("Scatterplot matrix legendposition", {
         )
 
         check_ui_test(result)
-        Sys.sleep(5)
     }
 })
 
@@ -165,7 +159,6 @@ test_that("dotplot legendposition", {
         )
 
         check_ui_test(result)
-        Sys.sleep(5)
     }
 })
 
@@ -189,6 +182,5 @@ test_that("heatmap legendposition", {
         )
 
         check_ui_test(result)
-        Sys.sleep(5)
     }
 })
