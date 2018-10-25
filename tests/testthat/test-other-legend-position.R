@@ -9,6 +9,11 @@ get_sample_legend_positions <- function() {
     sample(test_legend_positions, test_sample_size)
 }
 
+barplot_y <- read.table("http://www.canvasxpress.org/data/cX-basic-dat.txt", header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+boxplot_y <- read.table("http://www.canvasxpress.org/data/cX-toothgrowth-dat.txt", header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+boxplot_x <- read.table("http://www.canvasxpress.org/data/cX-toothgrowth-smp.txt", header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+
+
 test_that("scatterplot legendposition", {
 
     y <- read.table("http://www.canvasxpress.org/data/cX-mtcars-dat.txt", header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
@@ -31,11 +36,10 @@ test_that("scatterplot legendposition", {
 
 test_that("barplot legendposition", {
 
-    y <- read.table("http://www.canvasxpress.org/data/cX-basic-dat.txt", header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
     legend_inside <- TRUE
     for (legend_pos in get_sample_legend_positions()) {
         result <-  canvasXpress(
-            data                    = y,
+            data                    = barplot_y,
             graphOrientation        = "vertical",
             graphType               = "Bar",
             title                   = paste("Barplot - LegendPosition", legend_pos),
@@ -47,15 +51,34 @@ test_that("barplot legendposition", {
     }
 })
 
+test_that("barplot (segregated) legendposition", {
+
+    z <- data.frame(Plot = "Bar1", stringsAsFactors = F)
+    rownames(z) <- rownames(barplot_y)
+    legend_inside <- TRUE
+    for (legend_pos in get_sample_legend_positions()) {
+        result <-  canvasXpress(
+            data                    = barplot_y,
+            varAnnot                = z,
+            graphOrientation        = "vertical",
+            graphType               = "Bar",
+            segregateVariablesBy    = list("Plot"),
+            title                   = paste("Barplot (segregated) - LegendPosition", legend_pos),
+            legendPosition          = legend_pos,
+            legendInside            = legend_inside
+        )
+        check_ui_test(result)
+        Sys.sleep(5)
+    }
+})
+
 test_that("boxplot legendposition", {
 
-    y <- read.table("http://www.canvasxpress.org/data/cX-toothgrowth-dat.txt", header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
-    x <- read.table("http://www.canvasxpress.org/data/cX-toothgrowth-smp.txt", header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
     legend_inside            <- FALSE
     for (legend_pos in get_sample_legend_positions()) {
         result <-  canvasXpress(
-            data                    = y,
-            smpAnnot                = x,
+            data                    = boxplot_y,
+            smpAnnot                = boxplot_x,
             colorBy                 = "dose",
             graphOrientation        = "vertical",
             graphType               = "Boxplot",
@@ -64,6 +87,56 @@ test_that("boxplot legendposition", {
             smpTitle                = "dose",
             stringSampleFactors     = list("dose"),
             title                   = paste("Boxplot - LegendPosition", legend_pos),
+            legendPosition          = legend_pos,
+            legendInside            = legend_inside
+        )
+
+        check_ui_test(result)
+        Sys.sleep(5)
+    }
+})
+
+test_that("boxplot (segregated) legendposition", {
+
+    z <- data.frame(Plot = "Box1", stringsAsFactors = F)
+    rownames(z) <- rownames(boxplot_y)
+    legend_inside            <- FALSE
+    for (legend_pos in get_sample_legend_positions()) {
+        result <-  canvasXpress(
+            data                    = boxplot_y,
+            smpAnnot                = boxplot_x,
+            varAnnot                = z,
+            colorBy                 = "dose",
+            graphOrientation        = "vertical",
+            graphType               = "Boxplot",
+            segregateVariablesBy    = list("Plot"),
+            groupingFactors         = list("dose"),
+            showLegend              = TRUE,
+            smpTitle                = "dose",
+            stringSampleFactors     = list("dose"),
+            title                   = paste("Boxplot (segregated) - LegendPosition", legend_pos),
+            legendPosition          = legend_pos,
+            legendInside            = legend_inside
+        )
+
+        check_ui_test(result)
+        Sys.sleep(5)
+    }
+})
+
+test_that("Scatterplot matrix legendposition", {
+
+    y <- read.table("http://www.canvasxpress.org/data/cX-irist-dat.txt", header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+    z <- read.table("http://www.canvasxpress.org/data/cX-irist-var.txt", header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+    legend_inside            <- FALSE
+    for (legend_pos in get_sample_legend_positions()) {
+        result <-  canvasXpress(
+            data                    = y,
+            varAnnot                = z,
+            colorBy                 = "Species",
+            graphType               = "Scatter2D",
+            scatterPlotMatrix       = TRUE,
+            title                   = paste("Scatterplot matrix - LegendPosition", legend_pos),
             legendPosition          = legend_pos,
             legendInside            = legend_inside
         )
@@ -98,9 +171,9 @@ test_that("dotplot legendposition", {
 
 test_that("heatmap legendposition", {
 
-    y=read.table("http://www.canvasxpress.org/data/cX-heatmapR-dat.txt", header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
-    x=read.table("http://www.canvasxpress.org/data/cX-heatmapR-smp.txt", header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
-    z=read.table("http://www.canvasxpress.org/data/cX-heatmapR-var.txt", header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
+    y = read.table("http://www.canvasxpress.org/data/cX-heatmapR-dat.txt", header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+    x = read.table("http://www.canvasxpress.org/data/cX-heatmapR-smp.txt", header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+    z = read.table("http://www.canvasxpress.org/data/cX-heatmapR-var.txt", header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
 
     legend_inside <- FALSE
     for (legend_pos in get_sample_legend_positions()) {
