@@ -1,18 +1,22 @@
 context("canvasXpress legendTitle")
 
-y=read.table(system.file("extdata", "cX-scatterR3-dat.txt", package = "canvasXpress"), header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
-z=read.table(system.file("extdata", "cX-scatterR3-var.txt", package = "canvasXpress"), header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
+barplot_y <- read.table(system.file("extdata", "cX-simple-dat.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+barplot_x <- read.table(system.file("extdata", "cX-simple-smp.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+boxplot_y <- read.table(system.file("extdata", "cX-toothgrowth-dat.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+boxplot_x <- read.table(system.file("extdata", "cX-toothgrowth-smp.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
 
 test_that("scatterplot LegendTitle", {
 
+    y = read.table(system.file("extdata", "cX-scatterR3-dat.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+    z = read.table(system.file("extdata", "cX-scatterR3-var.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
     result <- canvasXpress(
                 data            = y,
                 varAnnot        = z,
                 colorBy         = "Group",
                 graphType       = "Scatter2D",
-                showLegendTitle = FALSE,
-                title           = "Scatterplot - LegendTitle")
-
+                title           = "Scatterplot - LegendTitle",
+                showLegendTitle = FALSE
+    )
     check_ui_test(result)
 })
 
@@ -20,6 +24,8 @@ test_that("barplot LegendTitle", {
 
     result <-  canvasXpress(
         data                    = barplot_y,
+        smpAnnot                = barplot_x,
+        colorBy                 = "Drug Sensitivity",
         graphOrientation        = "vertical",
         graphType               = "Bar",
         title                   = "Barplot - LegendTitle",
@@ -34,7 +40,9 @@ test_that("barplot (segregated) LegendTitle", {
     rownames(z) <- rownames(barplot_y)
     result <-  canvasXpress(
         data                    = barplot_y,
+        smpAnnot                = barplot_x,
         varAnnot                = z,
+        colorBy                 = "Drug Sensitivity",
         graphOrientation        = "vertical",
         graphType               = "Bar",
         segregateVariablesBy    = list("Plot"),
@@ -59,7 +67,6 @@ test_that("boxplot LegendTitle", {
         title                   = "Boxplot - LegendTitle",
         showLegendTitle         = FALSE
     )
-
     check_ui_test(result)
 })
 
@@ -82,7 +89,6 @@ test_that("boxplot (segregated) LegendTitle", {
         title                   = "Boxplot (segregated) - LegendTitle",
         showLegendTitle         = FALSE
     )
-
     check_ui_test(result)
 })
 
@@ -90,7 +96,6 @@ test_that("Scatterplot matrix LegendTitle", {
 
     y <- read.table(system.file("extdata", "cX-irist-dat.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
     z <- read.table(system.file("extdata", "cX-irist-var.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
-
     result <-  canvasXpress(
         data                    = y,
         varAnnot                = z,
@@ -100,43 +105,42 @@ test_that("Scatterplot matrix LegendTitle", {
         title                   = "Scatterplot matrix - LegendTitle",
         showLegendTitle         = FALSE
     )
-
     check_ui_test(result)
 })
 
 test_that("dotplot LegendTitle", {
 
-    y <- read.table(system.file("extdata", "cX-iris-dat.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
-    x <- read.table(system.file("extdata", "cX-iris-smp.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
-
-    legend_inside            <- TRUE
     result <-  canvasXpress(
-        data                    = y,
-        smpAnnot                = x,
+        data                    = boxplot_y,
+        smpAnnot                = boxplot_x,
+        colorBy                 = "dose",
+        stringSampleFactors     = list("dose"),
+        groupingFactors         = list("supp"),
         graphOrientation        = "vertical",
         graphType               = "Dotplot",
-        afterRender             = list(list("groupSamples", list("Species"))),
         title                   = "Dotplot - LegendTitle",
         showLegendTitle         = FALSE
     )
-
     check_ui_test(result)
 })
 
 test_that("heatmap LegendTitle", {
 
-    y = read.table(system.file("extdata", "cX-heatmapR-dat.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
-    x = read.table(system.file("extdata", "cX-heatmapR-smp.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
-    z = read.table(system.file("extdata", "cX-heatmapR-var.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+    y  <- read.table(system.file("extdata", "cX-multidimensionalheatmap-dat.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+    y3 <- read.table(system.file("extdata", "cX-multidimensionalheatmap-dat3.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+    x  <- read.table(system.file("extdata", "cX-multidimensionalheatmap-smp.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+    z  <- read.table(system.file("extdata", "cX-multidimensionalheatmap-var.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+
     result <-  canvasXpress(
-        data                    = y,
+        data                    = list(y = y, data3 = y3),
         smpAnnot                = x,
         varAnnot                = z,
-        colorBy                 = "dose",
+        shapeBy                 = "Shape",
+        shapeByData             = "data3",
         graphType               = "Heatmap",
         title                   = "Heatmap - LegendTitle",
+        showLegend              = TRUE,
         showLegendTitle         = FALSE
     )
     check_ui_test(result)
 })
-
