@@ -127,19 +127,13 @@ test_that("dotplot LegendTitle", {
 test_that("heatmap LegendTitle", {
 
     y  <- read.table(system.file("extdata", "cX-multidimensionalheatmap-dat.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
-    y3 <- read.table(system.file("extdata", "cX-multidimensionalheatmap-dat3.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
-    x  <- read.table(system.file("extdata", "cX-multidimensionalheatmap-smp.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
-    z  <- read.table(system.file("extdata", "cX-multidimensionalheatmap-var.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
-
+    y2 <- read.table(system.file("extdata", "cX-multidimensionalheatmap-dat3.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
     result <-  canvasXpress(
-        data                    = list(y = y, data3 = y3),
-        smpAnnot                = x,
-        varAnnot                = z,
+        data                    = list(y = y, data2 = y2),
         shapeBy                 = "Shape",
-        shapeByData             = "data3",
+        shapeByData             = "data2",
         graphType               = "Heatmap",
         title                   = "Heatmap - LegendTitle",
-        showLegend              = TRUE,
         showLegendTitle         = FALSE
     )
     check_ui_test(result)
