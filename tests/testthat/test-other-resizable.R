@@ -55,7 +55,7 @@ test_that("scatterplot not resizable", {
         colorBy                 = "cyl",
         graphType               = "Scatter2D",
         stringVariableFactors   = list("cyl"),
-        title                   = "Scatterplot - resizable height",
+        title                   = "Scatterplot - not resizable",
         resizable               = FALSE
     )
     check_ui_test(result)
