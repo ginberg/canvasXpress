@@ -18,9 +18,7 @@ test_that("segregation xAxis2Title", {
                            smpTitle                = "dose",
                            title                   = "xAxis2 title and legend should be readable",
                            xAxisTitle              = "len",
-                           xAxis2Title             = "xAxis2 Custom title",
-                           sortDir                 = "descending",
-                           afterRender             = list(list('sortSamplesByCategory', list("dose"))))
+                           xAxis2Title             = "xAxis2 Custom title")
 
     check_ui_test(result)
 
