@@ -11,6 +11,4 @@ test_that("cXline2", {
 
 test_that("cXline3", {
     check_ui_test(cXline3())
-
-    message("Sample (Time) ordering is not correct (should be Time1, Time2, etc)")
 })
