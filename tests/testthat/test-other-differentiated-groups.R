@@ -11,7 +11,7 @@ test_that("segregation ordering - Samples", {
                            colorBy                 = "supp",
                            groupingFactors         = list("dose", "supp"),
                            showBoxplotOriginalData = TRUE,
-                           showLegend              = TRUE,
+                           boxplotConnect          = TRUE,
                            smpLabelRotate          = 90,
                            smpTitle                = "Dose",
                            title                   = "Grouping by 3 doses and 2 supps, should look like 3 groups of boxplots",
@@ -19,5 +19,5 @@ test_that("segregation ordering - Samples", {
 
     check_ui_test(result)
 
-    fail("Boxplots grouping doesn't look good (looks like 6 separate boxplots)")
+    fail("Boxplots grouping doesn't look good (looks like 2 groups of 3 boxplots)")
 })
