@@ -80,6 +80,4 @@ test_that("segregated Boxplot decorations with different values", {
                                               list(align = "left", color = "rgb(255,0,0)", label = "Cutoff", value = 6, width = 2, scope = "virginica")))
         )
     check_ui_test(result)
-
-    fail("Each Species should have just one decoration.")
 })

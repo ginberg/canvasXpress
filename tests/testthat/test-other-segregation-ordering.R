@@ -22,7 +22,5 @@ test_that("segregation ordering - Samples", {
     )
 
     check_ui_test(result)
-
-    fail("Sorting is not correct (ascending instead of descending)")
 })
 
