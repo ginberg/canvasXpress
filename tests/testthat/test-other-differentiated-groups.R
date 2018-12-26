@@ -3,7 +3,7 @@ context("canvasXpress Charts - Differentiated groups")
 y <- read.table(system.file("extdata", "cX-toothgrowth-dat.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
 x <- read.table(system.file("extdata", "cX-toothgrowth-smp.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
 
-test_that("segregation ordering - Samples", {
+test_that("differentiated groups in boxplot", {
     result <- canvasXpress(data                    = y,
                            smpAnnot                = x,
                            graphOrientation        = "vertical",
