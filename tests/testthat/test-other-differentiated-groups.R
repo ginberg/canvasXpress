@@ -21,7 +21,6 @@ test_that("differentiated groups in boxplot 1", {
                            afterRender = list(list("pivotX", list("dose"))))
 
     check_ui_test(result)
-    fail('no legend')
 })
 
 test_that("differentiated groups in boxplot 2", {
@@ -42,5 +41,4 @@ test_that("differentiated groups in boxplot 2", {
                            afterRender = list(list("pivotX", list("supp"))))
 
     check_ui_test(result)
-    fail('no legend')
 })
