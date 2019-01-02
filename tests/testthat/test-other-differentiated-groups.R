@@ -18,7 +18,7 @@ test_that("differentiated groups in boxplot 1", {
                            smpTitle                = "Supplement",
                            title                   = "Test Grouping",
                            xAxisTitle              = "len",
-                           afterRender = list(list("pivotX", list("dose"))))
+                           afterRender             = list(list("pivotX", list("dose"))))
 
     check_ui_test(result)
 })
@@ -38,7 +38,34 @@ test_that("differentiated groups in boxplot 2", {
                            smpTitle                = "Dose",
                            title                   = "Test Grouping",
                            xAxisTitle              = "len",
-                           afterRender = list(list("pivotX", list("supp"))))
+                           afterRender             = list(list("pivotX", list("supp"))))
 
     check_ui_test(result)
+})
+
+test_that("differentiated groups in boxplot 3", {
+
+    z <- data.frame(Gene = c("Gene1"), stringsAsFactors = FALSE)
+    rownames(z) <- rownames(y)
+    result <- canvasXpress(data                    = y,
+                           smpAnnot                = x,
+                           varAnnot                = z,
+                           graphOrientation        = "vertical",
+                           graphType               = "Boxplot",
+                           colorBy                 = "supp",
+                           groupingFactors         = list("supp", "dose"),
+                           stringSampleFactors     = list("dose"),
+                           segregateVariablesBy    = list("Gene"),
+                           showBoxplotOriginalData = TRUE,
+                           boxplotConnect          = TRUE,
+                           showLegend              = TRUE,
+                           smpLabelRotate          = 90,
+                           smpTitle                = "Dose",
+                           title                   = "Test Grouping with segregation",
+                           xAxisTitle              = "len",
+                           afterRender             = list(list("pivotX", list("supp"))))
+
+    check_ui_test(result)
+
+    fail("Plot doesn't get rendered")
 })
