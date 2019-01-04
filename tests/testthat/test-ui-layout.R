@@ -37,8 +37,6 @@ test_that("cXlayout8", {
 
 test_that("cXlayout9", {
     check_ui_test(cXlayout9())
-
-    warning("disabling Sample1 bar disables all 'Variable1' bars if 'Variable1' has been disabled/enabled before.")
 })
 
 test_that("cXlayout10", {

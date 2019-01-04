@@ -7,20 +7,14 @@ test_that("cXstacked1", {
 
 test_that("cXstacked2", {
     check_ui_test(cXstacked2())
-
-    warning("disabling Sample1 bar disables also 'Variable1' bars if 'Variable1' has been disabled/enabled before.")
 })
 
 test_that("cXstacked3", {
     check_ui_test(cXstacked3())
-
-    warning("disabling Sample1 bar disables also 'Variable1' bars if 'Variable1' has been disabled/enabled before.")
 })
 
 test_that("cXstacked4", {
     check_ui_test(cXstacked4())
-
-    warning("disabling Sample1 bar disables also 'Variable1' bars if 'Variable1' has been disabled/enabled before.")
 })
 
 test_that("cXstacked5", {

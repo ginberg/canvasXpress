@@ -45,17 +45,15 @@ test_that("differentiated groups in boxplot 2", {
 
 test_that("differentiated groups in boxplot 3", {
 
-    z <- data.frame(Gene = c("Gene1"), stringsAsFactors = FALSE)
-    rownames(z) <- rownames(y)
+    x$Gene <- c(rep(c("Gene1", "Gene2"), 30))
     result <- canvasXpress(data                    = y,
                            smpAnnot                = x,
-                           varAnnot                = z,
                            graphOrientation        = "vertical",
                            graphType               = "Boxplot",
                            colorBy                 = "supp",
                            groupingFactors         = list("supp", "dose"),
                            stringSampleFactors     = list("dose"),
-                           segregateVariablesBy    = list("Gene"),
+                           segregateSamplesBy      = list("Gene"),
                            showBoxplotOriginalData = TRUE,
                            boxplotConnect          = TRUE,
                            showLegend              = TRUE,
@@ -66,6 +64,4 @@ test_that("differentiated groups in boxplot 3", {
                            afterRender             = list(list("pivotX", list("supp"))))
 
     check_ui_test(result)
-
-    fail("Plot doesn't get rendered")
 })
