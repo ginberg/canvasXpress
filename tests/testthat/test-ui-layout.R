@@ -45,6 +45,10 @@ test_that("cXlayout10", {
 
 test_that("cXlayout11", {
     check_ui_test(cXlayout11())
+})
+
+test_that("cXlayout12", {
+    check_ui_test(cXlayout12())
 
     message('middle section too small at default height - working as designed')
 })
