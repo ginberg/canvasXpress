@@ -1,7 +1,7 @@
 context("canvasXpress null data")
 
 get_plot_title <- function(plot) {
-    paste(plot, "- Null Data should be filtered (not turn 0)")
+    paste(plot, "- Null Data should be dropped (not turn 0)")
 }
 
 set_NA_data <- function(y) {
@@ -99,6 +99,4 @@ test_that("boxplot null data", {
                            afterRender             = list(list("pivotX", list("supp"))))
 
     check_ui_test(result)
-
-    fail("Null data is not filtered")
 })
