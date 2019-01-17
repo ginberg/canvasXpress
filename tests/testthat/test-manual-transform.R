@@ -2,9 +2,6 @@
 
 context("canvasXpress manualTransformations")
 
-barplot_y <- read.table(system.file("extdata", "cX-basic-dat.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
-boxplot_y <- read.table(system.file("extdata", "cX-toothgrowth-dat.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
-boxplot_x <- read.table(system.file("extdata", "cX-toothgrowth-smp.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
 
 test_that("scatter2D manualTransformations", {
 
@@ -35,20 +32,7 @@ test_that("heatmap manualTransformations", {
 
 test_that("line manualTransformations", {
 
-    y <- read.table(system.file("extdata", "cX-generic-dat.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
-    x <- read.table(system.file("extdata", "cX-generic-smp.txt", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
-
-     result <- canvasXpress(
-        data             = y,
-        smpAnnot         = x,
-        colorScheme      = "basic",
-        graphOrientation = "vertical",
-        graphType        = "Line",
-        lineType         = "spline",
-        showAnimation    = FALSE,
-        title            = "Line manualTransformations")
-
-     check_ui_test(result)
+    check_ui_test(cXline2())
 })
 
 test_that("area manualTransformations", {
