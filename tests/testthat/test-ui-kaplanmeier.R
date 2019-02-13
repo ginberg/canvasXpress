@@ -4,19 +4,19 @@ context("canvasXpress Web Charts - Kaplanmeier")
 test_that("cXkaplanmeier1", {
     check_ui_test(cXkaplanmeier1())
 
-    warning("Plot looks very different compared to the plot on CX website (afterRender seems not to work)")
+    warning("Plot looks very different compared to web example (afterRender seems not to work)")
 })
 
 test_that("cXkaplanmeier2", {
     check_ui_test(cXkaplanmeier2())
 
-    warning("Plot looks very different compared to the plot on CX website (afterRender seems not to work)")
+    warning("Plot looks very different compared to web example (afterRender seems not to work)")
 })
 
 test_that("cXkaplanmeier3", {
     check_ui_test(cXkaplanmeier3())
 
-    warning("The lines look different compared to the plot on the CX website (e.g. the 'Drug1' line")
+    warning("The lines look different compared to web example (e.g. the 'Drug1' line")
 })
 
 test_that("cXkaplanmeier4", {
@@ -26,5 +26,5 @@ test_that("cXkaplanmeier4", {
 test_that("cXkaplanmeier5", {
     check_ui_test(cXkaplanmeier5())
 
-    warning("The subcharts are in a different layout order compared to the plot on the CX website")
+    warning("The subcharts are in a different layout order compared to web example")
 })
