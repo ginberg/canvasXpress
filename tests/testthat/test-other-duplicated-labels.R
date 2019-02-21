@@ -24,7 +24,7 @@ test_that("barplot duplicated labels", {
 
 test_that("boxplot duplicated labels", {
 
-    colnames(y) <- c("S1", "S1", "S3", "S4", "S5", "S1", "S4", "S4")
+    colnames(y) <- c("S1", "S1", "S1", "S1", "S0", "S1", "S4", "S4")
     rownames(x) <- colnames(y)
 
     result <- canvasXpress(
