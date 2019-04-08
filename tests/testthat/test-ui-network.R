@@ -44,7 +44,6 @@ test_that("cXnetwork7", {
 test_that("cXnetwork8", {
     check_ui_test(cXnetwork8())
 
-
     warning('coloring off from web example')
 })
 
