@@ -74,7 +74,5 @@ test_that("precalculated barplot - list data", {
                            titleScaleFontFactor  = 0.5)
 
     check_ui_test(result)
-
-    fail("The error bar of the first group is not totally visible")
 })
 
