@@ -7,14 +7,10 @@ test_that("cXbar1", {
 
 test_that("cXbar2", {
     check_ui_test(cXbar2())
-
-    warning("when clicking on 'Sample1', the corresponding data is not disabled/hidden")
 })
 
 test_that("cXbar3", {
     check_ui_test(cXbar3())
-
-    warning("when clicking on 'Sample1', the corresponding data is not disabled/hidden")
 })
 
 test_that("cXbar4", {
@@ -25,26 +21,18 @@ test_that("cXbar4", {
 
 test_that("cXbar5", {
     check_ui_test(cXbar5())
-
-    warning("when clicking on 'Sample1', the corresponding data is not disabled/hidden")
 })
 
 test_that("cXbar6", {
     check_ui_test(cXbar6())
-
-    warning("when clicking on 'Sample1', the corresponding data is not disabled/hidden")
 })
 
 test_that("cXbar7", {
     check_ui_test(cXbar7())
-
-    warning("when clicking on 'Sample1', the corresponding data is not disabled/hidden")
 })
 
 test_that("cXbar8", {
     check_ui_test(cXbar8())
-
-    warning("when clicking on 'Sample1', the corresponding data is not disabled/hidden")
 })
 
 test_that("cXbar9", {

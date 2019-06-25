@@ -3,8 +3,6 @@ context("canvasXpress Web Charts - Dotplot")
 
 test_that("cXdotplot1", {
     check_ui_test(cXdotplot1())
-
-    warning("when clicking on 'Sample1', the corresponding plot data is not disabled")
 })
 
 test_that("cXdotplot2", {
@@ -19,8 +17,6 @@ test_that("cXdotplot3", {
 
 test_that("cXdotplot4", {
     check_ui_test(cXdotplot4())
-
-    warning("when clicking on 'Harvard', the corresponding plot data is not disabled")
 })
 
 test_that("cXdotplot5", {

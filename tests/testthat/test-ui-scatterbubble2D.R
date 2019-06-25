@@ -8,7 +8,7 @@ test_that("cXscatterbubble2d1", {
 test_that("cXscatterbubble2d2", {
     check_ui_test(cXscatterbubble2d2())
 
-    warning("when clicking on legend item, the corresponding plot data is not disabled")
+    warning("when clicking on a legend item, the corresponding plot data is not disabled")
 })
 
 test_that("cXscatterbubble2d3", {
