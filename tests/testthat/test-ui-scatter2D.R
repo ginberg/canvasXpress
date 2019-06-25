@@ -16,7 +16,7 @@ test_that("cXscatter2d3", {
 test_that("cXscatter2d4", {
     check_ui_test(cXscatter2d4())
 
-    warning("when clicking on a legend item, the corresponding data is not disabled/hidden")
+    fail("when clicking on a legend item, the corresponding data is not disabled/hidden")
 })
 
 test_that("cXscatter2d5", {
@@ -58,5 +58,5 @@ test_that("cXscatter2d13", {
 test_that("cXscatter2d14", {
     check_ui_test(cXscatter2d14())
 
-    warning("when clicking on a legend item, the corresponding data is not disabled/hidden")
+    fail("when clicking on a legend item, the corresponding data is not disabled/hidden")
 })

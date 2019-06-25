@@ -10,6 +10,6 @@ test_that("cXparallelcoordinates1", {
 test_that("cXparallelcoordinates2", {
     check_ui_test(cXparallelcoordinates2())
 
-    warning("when clicking on legend item 'setosa', the corresponding plot data is not disabled")
+    fail("when clicking on legend item 'setosa', the corresponding plot data is not disabled")
 })
 
