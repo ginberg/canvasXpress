@@ -43,12 +43,10 @@ test_that("cXbar10", {
     check_ui_test(cXbar10())
 
     warning("Durable overlay looks different in R than on the CX website, missing the following parm: smpOverlayProperties=list('Durable' = list('type'='Boolean'))")
-    warning("When clicking on Durable with value = 0 (e.g. at S8), all bars are disabled")
 })
 
 test_that("cXbar11", {
     check_ui_test(cXbar11())
 
     warning("Durable overlay looks different in R than on the CX website, missing the following parm: smpOverlayProperties=list('Durable' = list('type'='Boolean'))")
-    warning("When clicking on Durable with value = 0 (e.g. at S8), all bars are disabled")
 })
