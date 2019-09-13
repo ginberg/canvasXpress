@@ -45,6 +45,7 @@ test_that("barplot (segregated) zoomDisable", {
         zoomDisable             = TRUE
     )
     check_ui_test(result)
+    warning("tooltip is not working")
 })
 
 test_that("boxplot zoomDisable", {
@@ -87,6 +88,7 @@ test_that("boxplot (segregated) zoomDisable", {
     )
 
     check_ui_test(result)
+    warning("tooltip is not working")
 })
 
 test_that("Scatterplot matrix zoomDisable", {

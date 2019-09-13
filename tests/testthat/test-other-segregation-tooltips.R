@@ -26,4 +26,6 @@ test_that("segregation boxplot tooltips", {
     )
 
     check_ui_test(result)
+
+    fail("plot is not generated, gives a counting spinner")
 })

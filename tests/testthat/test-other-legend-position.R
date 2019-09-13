@@ -67,6 +67,7 @@ test_that("barplot (segregated) legendposition", {
         )
         check_ui_test(result)
     }
+    warning("tooltip is not working")
 })
 
 test_that("boxplot legendposition", {
@@ -115,6 +116,7 @@ test_that("boxplot (segregated) legendposition", {
         )
         check_ui_test(result)
     }
+    warning("tooltip is not working")
 })
 
 test_that("Scatterplot matrix legendposition", {

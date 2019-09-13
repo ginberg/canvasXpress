@@ -26,6 +26,8 @@ test_that("segregated barplot duplicated labels", {
         xAxis2Show                = FALSE
     )
     check_ui_test(result)
+
+    warning("tooltip is not working")
 })
 
 test_that("barplot duplicated labels", {
@@ -76,6 +78,8 @@ test_that("segregated boxplot duplicated labels", {
                            titleScaleFontFactor  = 0.5)
 
     check_ui_test(result)
+
+    warning("tooltip is not working")
 })
 
 test_that("boxplot duplicated labels", {

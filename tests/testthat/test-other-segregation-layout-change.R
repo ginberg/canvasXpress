@@ -15,6 +15,7 @@ test_that("segregation layout change - Samples", {
                            layoutTopology = "1X3"
     )
     check_ui_test(result)
+    warning("tooltip is not working")
 })
 
 test_that("segregation layout change - Variables", {
@@ -30,4 +31,5 @@ test_that("segregation layout change - Variables", {
     )
 
     check_ui_test(result)
+    warning("tooltip is not working")
 })

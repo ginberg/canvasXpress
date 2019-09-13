@@ -99,4 +99,5 @@ test_that("boxplot null data", {
                            afterRender             = list(list("pivotX", list("supp"))))
 
     check_ui_test(result)
+    warning("tooltip is not working")
 })
