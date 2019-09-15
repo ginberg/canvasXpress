@@ -54,7 +54,6 @@ test_that("barplot (segregated) LegendTitle", {
         showLegendTitle         = FALSE
     )
     check_ui_test(result)
-    warning("tooltip is not working")
 })
 
 test_that("boxplot LegendTitle", {
@@ -95,7 +94,6 @@ test_that("boxplot (segregated) LegendTitle", {
         showLegendTitle         = FALSE
     )
     check_ui_test(result)
-    warning("tooltip is not working")
 })
 
 test_that("Scatterplot matrix LegendTitle", {

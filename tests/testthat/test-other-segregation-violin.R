@@ -22,6 +22,4 @@ test_that("violinplot with grouping and segregation", {
     )
 
     check_ui_test(result)
-
-    warning("tooltip is not working")
 })

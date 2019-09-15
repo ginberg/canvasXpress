@@ -21,7 +21,6 @@ test_that("segregation xAxis2Title", {
                            xAxis2Title             = "xAxis2 Custom title")
 
     check_ui_test(result)
-    warning("tooltip is not working")
 })
 
 test_that("segregation smpTitle", {
@@ -41,5 +40,4 @@ test_that("segregation smpTitle", {
                            smpTitle                = "smpTitle Custom title")
 
     check_ui_test(result)
-    warning("tooltip is not working")
 })

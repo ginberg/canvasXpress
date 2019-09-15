@@ -22,6 +22,5 @@ test_that("segregation ordering - Samples", {
     )
 
     check_ui_test(result)
-    warning("tooltip is not working")
 })
 
