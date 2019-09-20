@@ -100,3 +100,20 @@ test_that("boxplot null data", {
 
     check_ui_test(result)
 })
+
+test_that("boxplot null smpdata", {
+
+    y <- read.table(system.file("extdata", "cX-toothgrowth-dat.txt.gz", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+    x <- read.table(system.file("extdata", "cX-toothgrowth-smp.txt.gz", package = "canvasXpress"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+    x[(0.2*nrow(x)):(0.4*nrow(x)), "dose"] <- NA
+
+    result <- canvasXpress(data                    = y,
+                           smpAnnot                = x,
+                           graphOrientation        = "vertical",
+                           graphType               = "Boxplot",
+                           groupingFactors         = list("dose"),
+                           smpTitle                = "Dose",
+                           title                   = "Sample Data with NA, should not cause the plot to crash")
+
+    check_ui_test(result)
+})
