@@ -110,7 +110,6 @@ test_that("boxplot null smpdata", {
 
     result <- canvasXpress(data                    = y,
                            smpAnnot                = x,
-                           #graphOrientation        = "vertical",
                            graphType               = "Boxplot",
                            smpTitle                = "Supp",
                            groupingFactors         = list("supp"),
