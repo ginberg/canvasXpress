@@ -176,4 +176,5 @@ test_that("heatmap legendposition", {
         )
         check_ui_test(result)
     }
+    warning("Legend positions top and bottom are not working")
 })
