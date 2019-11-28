@@ -24,4 +24,6 @@ test_that("boxplot - grouping", {
         xAxisTitle = "len"
     )
     check_ui_test(result)
+
+    warning("when hovering over sample names, they are not well readable")
 })
