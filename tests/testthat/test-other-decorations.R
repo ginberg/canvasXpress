@@ -22,7 +22,6 @@ test_that("scatterplot referenceLines", {
         decorations             = list(line = list(list(color = "rgba(205,0,0,0.5)", width = 2, x = 0.5), list(color = "rgba(0,104,139,0.5)", width = 2, x = -0.5)))
     )
     check_ui_test(result)
-    warning("Decorations are missing")
 })
 
 test_that("scatterplot notePoint", {
@@ -45,7 +44,6 @@ test_that("scatterplot notePoint", {
     )
 
     check_ui_test(result)
-    warning("Decoration is missing")
 })
 
 test_that("barplot annotations", {
@@ -59,7 +57,6 @@ test_that("barplot annotations", {
         decorations             = list(marker = list(list(fontSize = 12, sample = "Sample1", text = "p < 0.01 ***", type = "annotation", variable = "Variable1"), list(fontSize = 12, sample = "Sample2", text = "p < 0.05 **", type = "annotation", variable = "Variable1")))
     )
     check_ui_test(result)
-    warning("Decorations are missing")
 })
 
 test_that("segregated Boxplot decorations with different values", {
@@ -83,7 +80,6 @@ test_that("segregated Boxplot decorations with different values", {
                                               list(align = "left", color = "rgb(255,0,0)", label = "Cutoff", value = 6, width = 2, scope = "virginica")))
         )
     check_ui_test(result)
-    warning("Decorations are missing")
 })
 
 test_that("segregated Boxplot decorations with same values", {
@@ -107,7 +103,6 @@ test_that("segregated Boxplot decorations with same values", {
         decorations        = list(line = list(list(align = "left", color = "rgb(255,0,0)", label = "Cutoff", value = 2, width = 2)))
     )
     check_ui_test(result)
-    warning("Decorations are missing")
 })
 
 test_that("segregated Boxplot decoration label position", {
@@ -139,7 +134,7 @@ test_that("segregated Boxplot decoration label position", {
 
         check_ui_test(result)
 
-        warning("Decoration label is missing")
+        warning(paste("Decoration label is very close to the", pos, "line"))
         warning("X-axis origin is visible on top overlapped by segregate variable")
     }
 })
