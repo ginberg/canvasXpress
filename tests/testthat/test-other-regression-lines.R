@@ -32,7 +32,7 @@ test_that("scatterplot per-sample regressionLine", {
     )
     check_ui_test(result)
 
-    warning("no regression lines in plot")
+    warning("regression lines and regression info (in legend) are missing")
 })
 
 
