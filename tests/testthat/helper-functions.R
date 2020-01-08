@@ -2,7 +2,6 @@
 library(canvasXpress.data)
 library(htmlwidgets)
 
-
 if (interactive()) {
     library(testthat)
     library(canvasXpress)
