@@ -2,8 +2,9 @@
 
 if (interactive()) {
     suppressPackageStartupMessages({
-        library(dplyr)
+        library(canvasXpress)
         library(periscope)
+        library(dplyr)
         library(glue)
     })
 
@@ -14,7 +15,7 @@ if (interactive()) {
     ui_body_filename      <- "ui_body.R"
     ui_sidebar_filename   <- "ui_sidebar.R"
     server_local_filename <- "server_local.R"
-    title_expression      <- "Set title in global.R using set_app_parameters\\(\\)"
+    top_box_libraries     <- c("canvasXpress", "canvasXpress.data", "periscope", "shiny", "shinydashboard", "shinyBS", "DT", "htmlwidgets", "dplyr")
 
     # Checks if the location contains a periscope application.
     .is_periscope_app <- function(location = ".") {
@@ -58,36 +59,15 @@ if (interactive()) {
                                con = paste(output_dir, file_name, sep = usersep))
                 }
                 file.remove(paste(test_app_location, "program", ui_sidebar_filename, sep = usersep))
+                # Set libraries to show
+                global_content <- readLines(con = paste(test_app_location, "program", global_filename, sep = usersep))
+                top_box_libraries_string <- paste0("c('", paste(top_box_libraries, collapse = "','"), "')")
+                global_content[length(global_content)] <- glue("g_top_box_libraries <- {top_box_libraries_string}")
+                writeLines(global_content, con = paste(test_app_location, "program", global_filename, sep = usersep))
 
-                # # Top box (collapsed by default)
-                # # Title: INFO (<Date App Generated>)
-                # box_title   <- glue("INFO ({format(Sys.Date(), '%Y.%m.%d')})")
-                # box_content <- sessionInfo()$R.version$version.string
-                # top_box_content <- glue("body1 <- box(id          = 'topBox',
-                #                                       title       = '{box_title}',
-                #                                       width       = 12,
-                #                                       status      = 'primary',
-                #                                       collapsible = T,
-                #                                       collapsed   = T,
-                #                                       '{box_content}')")
-                # # add top box
-                # ui_body_content <- readLines(con = paste(test_app_location, ui_body_filename, sep = usersep))
-                # index <- grep("Create Elements", ui_body_content)
-                # if (!identical(index, integer(0))) {
-                #     ui_body_content[index + 1]               <- top_box_content
-                #     ui_body_content[length(ui_body_content)] <- "add_ui_body(body1)"
-                #     writeLines(ui_body_content, con = paste(test_app_location, ui_body_filename, sep = usersep))
-                # }
 
-                # Content:
-                #     R Version (use sessionInfo()$R.version$version.string)
-                # Package Versions for the following (use packageVersion('<pkg>'))
-                # canvasXpress, canvasXpress.data, periscope
-                # shiny, shinydashboard, shinyBS, DT, htmlwidgets, dplyr
-
-                # * add text to app
-                # * add functions in app
-                # TODO parse file -> list of functions that can be executed
+                # TODO add plot_functions to app
+                # parse file -> list of functions that can be executed
                 ui_functions_file <- readLines(con = "tests/cX-ui-functions.R")
 
                 message(glue("Shiny app generated in {test_app_location}"))

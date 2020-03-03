@@ -19,4 +19,3 @@ set_app_parameters(title = "CanvasXpress Test Application",
 
 # -- PROGRAM --
 
-g_top_box_libraries <- c("canvasXpress", "canvasXpress.data", "periscope", "shiny", "shinydashboard", "shinyBS", "DT", "htmlwidgets", "dplyr")
