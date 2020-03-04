@@ -30,11 +30,7 @@ body1 <- box(id          = 'topBox',
              collapsed   = T,
              uiOutput("topBoxContent"))
 
-body2 <- tabBox(id       = "outputTab",
-                title    = NULL,
-                width    = 12,
-                selected = "Area",
-                uiOutput("tabContent"))
+body2 <- uiOutput("tabContent")
 
 # -- Register Elements in the ORDER SHOWN in the UI
-add_ui_body(body1)
+add_ui_body(list(body1, body2))

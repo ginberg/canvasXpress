@@ -19,3 +19,8 @@ set_app_parameters(title = "CanvasXpress Test Application",
 
 # -- PROGRAM --
 
+library(canvasXpress)
+library(canvasXpress.data)
+
+source('program/fxn/supporting_plots.R')
+

@@ -16,6 +16,10 @@ if (interactive()) {
     ui_sidebar_filename   <- "ui_sidebar.R"
     server_local_filename <- "server_local.R"
     top_box_libraries     <- c("canvasXpress", "canvasXpress.data", "periscope", "shiny", "shinydashboard", "shinyBS", "DT", "htmlwidgets", "dplyr")
+    plot_categories       <- c("Area", "AreaLine", "Bar", "BarLine", "Boxplot", "Bubble", "Chord", "Circular", "Contour", "Correlation", "Density", "Donnut", "DotLine",
+                               "Dotplot", "Gantt", "Heatmap", "Histogram", "Kaplan-Meier", "Layout", "Line", "Map", "Network", "Non-Linear-Fit", "Oncoprint",
+                               "ParallelCoordinates", "Pie", "Radar", "Sankey", "Scatter2D", "Scatter3D", "ScatterBubble2D", "Stacked", "StackedLine",
+                               "StackedPercent", "StackedPercentLine", "Sunburst", "TCGA", "TagCloud", "Tree", "Treemap", "Venn", "Violin")
 
     # Checks if the location contains a periscope application.
     .is_periscope_app <- function(location = ".") {
@@ -62,13 +66,63 @@ if (interactive()) {
                 # Set libraries to show
                 global_content <- readLines(con = paste(test_app_location, "program", global_filename, sep = usersep))
                 top_box_libraries_string <- paste0("c('", paste(top_box_libraries, collapse = "','"), "')")
-                global_content[length(global_content)] <- glue("g_top_box_libraries <- {top_box_libraries_string}")
+                plot_categories_string   <- paste0("c('", paste(plot_categories, collapse = "','"), "')")
+
+                global_content[length(global_content) + 1]     <- glue("g_top_box_libraries <- {top_box_libraries_string}")
+                global_content[length(global_content) + 1] <- glue("g_plot_categories   <- {plot_categories_string}")
                 writeLines(global_content, con = paste(test_app_location, "program", global_filename, sep = usersep))
 
-
-                # TODO add plot_functions to app
                 # parse file -> list of functions that can be executed
                 ui_functions_file <- readLines(con = "tests/cX-ui-functions.R")
+                writeLines(ui_functions_file, con = paste(test_app_location, "program", "fxn", "supporting_plots.R", sep = usersep))
+
+
+                # TODO add a tab for each plot category
+                server_local_content <- readLines(con = paste(test_app_location, "program", server_local_filename, sep = usersep))
+                plot_tabs_location   <- grep("#TODO plot-tabs", server_local_content)
+
+                plot_tabs_command <- ""
+                plot_category_counts <- list()
+                for (i in 1:length(plot_categories)) {
+                    plot_category  <- plot_categories[i]
+                    cx_category_id <- glue("cX{gsub('-', '', tolower(plot_category))}")
+                    max_index      <- max(grep(paste0(cx_category_id, "[0-9]+"), ui_functions_file))
+                    plot_count     <- as.numeric(trimws(gsub(cx_category_id, "", (gsub("<.*", "", ui_functions_file[max_index])))))
+                    #print(paste(cx_category_id, plot_count))
+                    plot_category_counts[[cx_category_id]] <- plot_count
+                }
+                plot_category_counts <- as.numeric(unlist(plot_category_counts))
+                plot_category_counts_string <- paste0("c(", paste(plot_category_counts, collapse = ","), ")")
+
+                plot_tabs_command <- paste0("tabs <- list(rep(0, length(g_plot_categories)))
+                                           plot_counts <- ", plot_category_counts_string, "
+                                           for (i in 1:length(g_plot_categories)) {
+                                            plot_category <- g_plot_categories[i]
+                                            plot_count <- plot_counts[i]
+                                            cx_plot_outputs <- c()
+                                            for (j in seq(plot_count)) {
+                                                cx_plot_id <- paste0(\"cX\", tolower(plot_category), j)
+                                                cx_plot_output       <- canvasXpressOutput(cx_plot_id)
+                                                cx_plot_outputs      <- c(cx_plot_outputs, cx_plot_output)
+                                                output[[cx_plot_id]] <- renderCanvasXpress({
+                                                    plot_function <- getCurrentOutputInfo()$name
+                                                    eval(parse(text = paste0(plot_function, \"()\")))
+                                                })
+                                            }
+                                            tabs[i] <- lapply(plot_category,
+                                                                  tabPanel,
+                                                                  cx_plot_outputs,
+                                                                  id = plot_category)
+                                          }
+                                          do.call(tabBox,
+                                                 c(id  = \"outputTab\",
+                                                   title    = NULL,
+                                                   width    = 12,
+                                                   selected = \"Area\",
+                                                   tabs))")
+
+                server_local_content[plot_tabs_location] <- paste0("eval(parse(text = '", plot_tabs_command, "'))")
+                writeLines(server_local_content, con = paste(test_app_location, "program", server_local_filename, sep = usersep))
 
                 message(glue("Shiny app generated in {test_app_location}"))
             }
