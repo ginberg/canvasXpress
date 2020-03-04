@@ -99,20 +99,20 @@ if (interactive()) {
                                            for (i in 1:length(g_plot_categories)) {
                                             plot_category <- g_plot_categories[i]
                                             plot_count <- plot_counts[i]
-                                            cx_plot_outputs <- c()
-                                            for (j in seq(plot_count)) {
-                                                cx_plot_id <- paste0(\"cX\", tolower(plot_category), j)
-                                                cx_plot_output       <- canvasXpressOutput(cx_plot_id)
-                                                cx_plot_outputs      <- c(cx_plot_outputs, cx_plot_output)
-                                                output[[cx_plot_id]] <- renderCanvasXpress({
+                                            lapply(seq(plot_count), function(k) {
+                                                plot_category     <- g_plot_categories[i]
+                                                plot_id           <- paste0(\"cX\", tolower(plot_category), k)
+                                                output[[plot_id]] <- renderCanvasXpress({
                                                     plot_function <- getCurrentOutputInfo()$name
                                                     eval(parse(text = paste0(plot_function, \"()\")))
-                                                })
-                                            }
-                                            tabs[i] <- lapply(plot_category,
-                                                                  tabPanel,
-                                                                  cx_plot_outputs,
-                                                                  id = plot_category)
+                                                 })
+                                             })
+                                             canvasXpress_outputs <- lapply(seq(plot_count), function(k) {
+                                                canvasXpressOutput(paste0(\"cX\", tolower(plot_category), k))
+                                             })
+                                             tabs[i] <- lapply(plot_category,
+                                                               tabPanel,
+                                                               canvasXpress_outputs)
                                           }
                                           do.call(tabBox,
                                                  c(id  = \"outputTab\",
