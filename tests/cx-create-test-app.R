@@ -15,6 +15,7 @@ if (interactive()) {
     ui_body_filename      <- "ui_body.R"
     ui_sidebar_filename   <- "ui_sidebar.R"
     server_local_filename <- "server_local.R"
+    css_filename          <- "custom.css"
     top_box_libraries     <- c("canvasXpress", "canvasXpress.data", "periscope", "shiny", "shinydashboard", "shinyBS", "DT", "htmlwidgets", "dplyr")
     plot_categories       <- c("Area", "AreaLine", "Bar", "BarLine", "Boxplot", "Bubble", "Chord", "Circular", "Contour", "Correlation", "Density", "Donnut", "DotLine",
                                "Dotplot", "Gantt", "Heatmap", "Histogram", "Kaplan-Meier", "Layout", "Line", "Map", "Network", "Non-Linear-Fit", "Oncoprint",
@@ -54,10 +55,12 @@ if (interactive()) {
             }
             else {
                 # overwrite template files
-                for (file_name in c(ui_filename, global_filename, ui_body_filename, server_local_filename)) {
+                for (file_name in c(ui_filename, global_filename, ui_body_filename, server_local_filename, css_filename)) {
                     output_dir <- paste(test_app_location, "program", sep = usersep)
                     if (file_name == ui_filename) {
                         output_dir <- test_app_location
+                    } else if (file_name == css_filename) {
+                        output_dir <- paste(test_app_location, "www", "css", sep = usersep)
                     }
                     writeLines(readLines(con = system.file("test-app", file_name, package = "canvasXpress")),
                                con = paste(output_dir, file_name, sep = usersep))
@@ -77,7 +80,7 @@ if (interactive()) {
                 writeLines(ui_functions_file, con = paste(test_app_location, "program", "fxn", "supporting_plots.R", sep = usersep))
 
 
-                # TODO add a tab for each plot category
+                # add a tab for each plot category
                 server_local_content <- readLines(con = paste(test_app_location, "program", server_local_filename, sep = usersep))
                 plot_tabs_location   <- grep("#TODO plot-tabs", server_local_content)
 
@@ -107,12 +110,13 @@ if (interactive()) {
                                                     eval(parse(text = paste0(plot_function, \"()\")))
                                                  })
                                              })
-                                             canvasXpress_outputs <- lapply(seq(plot_count), function(k) {
-                                                canvasXpressOutput(paste0(\"cX\", tolower(plot_category), k))
+                                             plot_outputs <- lapply(seq(plot_count), function(k) {
+                                                tagList(tags$b(paste0(\"cX\", tolower(plot_category), k)),
+                                                        canvasXpressOutput(paste0(\"cX\", tolower(plot_category), k), width = \"30%\"))
                                              })
                                              tabs[i] <- lapply(plot_category,
                                                                tabPanel,
-                                                               canvasXpress_outputs)
+                                                               plot_outputs)
                                           }
                                           do.call(tabBox,
                                                  c(id  = \"outputTab\",
