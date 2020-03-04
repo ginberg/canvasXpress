@@ -28,6 +28,7 @@ body1 <- box(id          = 'topBox',
              status      = 'primary',
              collapsible = T,
              collapsed   = T,
+             tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "css/custom.css")),
              uiOutput("topBoxContent"))
 
 body2 <- uiOutput("tabContent")
