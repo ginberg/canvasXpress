@@ -96,10 +96,9 @@ if (interactive()) {
                 plot_tabs_command <- paste0("tabs <- list(rep(0, length(g_plot_categories)))
                                            plot_counts <- ", plot_category_counts_string, "
                                            for (i in 1:length(g_plot_categories)) {
-                                            plot_category <- g_plot_categories[i]
+                                            plot_category <- gsub(\"-\", \"\", g_plot_categories[i])
                                             plot_count <- plot_counts[i]
                                             lapply(seq(plot_count), function(k) {
-                                                plot_category     <- g_plot_categories[i]
                                                 plot_id           <- paste0(\"cX\", tolower(plot_category), k)
                                                 output[[plot_id]] <- renderCanvasXpress({
                                                     plot_function <- getCurrentOutputInfo()$name
