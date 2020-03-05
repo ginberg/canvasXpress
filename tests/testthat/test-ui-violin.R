@@ -65,10 +65,12 @@ test_that("cXviolin16", {
     check_ui_test(cXviolin16())
 
     warning('Data points appearing on the chart are too small, unless it is resized manually or refreshed')
+    warning("When disabling VC points via legend also OJ points are disabled")
 })
 
 test_that("cXviolin17", {
     check_ui_test(cXviolin17())
 
     warning('Data points appearing on the chart are too small, unless it is resized manually or refreshed')
+    warning("When disabling VC points via legend also OJ points are disabled")
 })

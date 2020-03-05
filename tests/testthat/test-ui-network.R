@@ -19,6 +19,8 @@ test_that("cXnetwork4", {
 
 test_that("cXnetwork5", {
     check_ui_test(cXnetwork5())
+
+    warning("chart not generated")
 })
 
 test_that("cXnetwork6", {
@@ -29,10 +31,14 @@ test_that("cXnetwork6", {
 
 test_that("cXnetwork7", {
     check_ui_test(cXnetwork7())
+
+    warning("chart not generated")
 })
 
 test_that("cXnetwork8", {
     check_ui_test(cXnetwork8())
+
+    warning("chart not generated")
 })
 
 test_that("cXnetwork9", {

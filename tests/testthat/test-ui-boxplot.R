@@ -67,10 +67,14 @@ test_that("cXboxplot16", {
 
 test_that("cXboxplot17", {
     check_ui_test(cXboxplot17())
+
+    warning("When disabling VC points via legend also OJ points are disabled")
 })
 
 test_that("cXboxplot18", {
     check_ui_test(cXboxplot18())
+
+    warning("When disabling VC points via legend also OJ points are disabled")
 })
 
 test_that("cXboxplot19", {

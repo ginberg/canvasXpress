@@ -9,6 +9,8 @@ test_that("Network XML Data - compact", {
                            nodeSize    = 30)
 
     check_ui_test(result)
+
+    warning("chart not generated")
 })
 
 test_that("Network XML Data - space", {
@@ -19,6 +21,8 @@ test_that("Network XML Data - space", {
                            nodeSize    = 30)
 
     check_ui_test(result)
+
+    warning("chart not generated")
 })
 
 test_that("Network XML Data - tab", {
@@ -29,6 +33,8 @@ test_that("Network XML Data - tab", {
                            nodeSize    = 30)
 
     check_ui_test(result)
+
+    warning("chart not generated")
 })
 
 test_that("Network XML Data - compact + tsv additional data", {
@@ -40,6 +46,8 @@ test_that("Network XML Data - compact + tsv additional data", {
                            nodeSize    = 30)
 
     check_ui_test(result)
+
+    warning("chart not generated")
 })
 
 test_that("Network XML Data - compact + url additional data", {
@@ -51,6 +59,8 @@ test_that("Network XML Data - compact + url additional data", {
                            nodeSize    = 30)
 
     check_ui_test(result)
+
+    warning("chart not generated")
 })
 
 test_that("Network XML Data - compact + mixed additional data", {
@@ -63,6 +73,8 @@ test_that("Network XML Data - compact + mixed additional data", {
                            nodeSize    = 30)
 
     check_ui_test(result)
+
+    warning("chart not generated")
 })
 
 test_that("Network JSON Data - compact", {
