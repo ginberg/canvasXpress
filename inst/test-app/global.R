@@ -21,6 +21,7 @@ set_app_parameters(title = "CanvasXpress Test Application",
 
 library(canvasXpress)
 library(canvasXpress.data)
+library(glue)
 
 source('program/fxn/supporting_plots.R')
 

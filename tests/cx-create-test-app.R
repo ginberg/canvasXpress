@@ -38,8 +38,7 @@ if (interactive()) {
         else {
             usersep <- .Platform$file.sep
 
-            # create shiny app
-            # overwrite previous app
+            # create/overwrite shiny app
             test_app_location <- paste(tests_location, test_app_name, sep = usersep)
             if (file.exists(test_app_location)) {
                 unlink(test_app_location, recursive = TRUE)
@@ -79,19 +78,16 @@ if (interactive()) {
                 ui_functions_file <- readLines(con = "tests/cX-ui-functions.R")
                 writeLines(ui_functions_file, con = paste(test_app_location, "program", "fxn", "supporting_plots.R", sep = usersep))
 
-
                 # add a tab for each plot category
                 server_local_content <- readLines(con = paste(test_app_location, "program", server_local_filename, sep = usersep))
                 plot_tabs_location   <- grep("#TODO plot-tabs", server_local_content)
 
-                plot_tabs_command <- ""
                 plot_category_counts <- list()
                 for (i in 1:length(plot_categories)) {
                     plot_category  <- plot_categories[i]
                     cx_category_id <- glue("cX{gsub('-', '', tolower(plot_category))}")
                     max_index      <- max(grep(paste0(cx_category_id, "[0-9]+"), ui_functions_file))
                     plot_count     <- as.numeric(trimws(gsub(cx_category_id, "", (gsub("<.*", "", ui_functions_file[max_index])))))
-                    #print(paste(cx_category_id, plot_count))
                     plot_category_counts[[cx_category_id]] <- plot_count
                 }
                 plot_category_counts <- as.numeric(unlist(plot_category_counts))
@@ -111,8 +107,9 @@ if (interactive()) {
                                                  })
                                              })
                                              plot_outputs <- lapply(seq(plot_count), function(k) {
-                                                tagList(tags$b(paste0(\"cX\", tolower(plot_category), k)),
-                                                        canvasXpressOutput(paste0(\"cX\", tolower(plot_category), k), width = \"30%\"))
+                                                tagList(tags$div(class = \"cxplotdiv\",
+                                                                 tags$div(class = \"cxplotdivtext\", tags$b(paste0(\"cX\", tolower(plot_category), k))),
+                                                                 canvasXpressOutput(paste0(\"cX\", tolower(plot_category), k), width = \"100%\")))
                                              })
                                              tabs[i] <- lapply(plot_category,
                                                                tabPanel,
