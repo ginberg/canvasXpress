@@ -38,5 +38,6 @@ Suggests:
     glue,
     dplyr,
     tibble,
-    tidyr
+    tidyr,
+    periscope
 VignetteBuilder: knitr

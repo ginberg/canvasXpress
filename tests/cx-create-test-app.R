@@ -18,7 +18,7 @@ if (interactive()) {
     css_filename          <- "custom.css"
     top_box_libraries     <- c("canvasXpress", "canvasXpress.data", "periscope", "shiny", "shinydashboard", "shinyBS", "DT", "htmlwidgets", "dplyr")
     plot_categories       <- c("Area", "AreaLine", "Bar", "BarLine", "Boxplot", "Bubble", "Chord", "Circular", "Contour", "Correlation", "Density", "Donnut", "DotLine",
-                               "Dotplot", "Gantt", "Heatmap", "Histogram", "Kaplan-Meier", "Layout", "Line", "Map", "Network", "Non-Linear-Fit", "Oncoprint",
+                               "Dotplot", "Gantt", "Heatmap", "Histogram", "Kaplan-Meier", "Layout", "Line", "Map", "Network", "NonLinear-Fit", "Oncoprint",
                                "ParallelCoordinates", "Pie", "Radar", "Sankey", "Scatter2D", "Scatter3D", "ScatterBubble2D", "Stacked", "StackedLine",
                                "StackedPercent", "StackedPercentLine", "Sunburst", "TCGA", "TagCloud", "Tree", "Treemap", "Venn", "Violin")
 
