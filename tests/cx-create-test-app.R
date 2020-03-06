@@ -96,10 +96,11 @@ if (interactive()) {
                 plot_tabs_command <- paste0("tabs <- list(rep(0, length(g_plot_categories)))
                                            plot_counts <- ", plot_category_counts_string, "
                                            for (i in 1:length(g_plot_categories)) {
-                                            plot_category <- gsub(\"-\", \"\", g_plot_categories[i])
+                                            plot_category           <- g_plot_categories[i]
+                                            plot_category_formatted <- tolower(gsub(\"-\", \"\", g_plot_categories[i]))
                                             plot_count <- plot_counts[i]
                                             lapply(seq(plot_count), function(k) {
-                                                plot_id           <- paste0(\"cX\", tolower(plot_category), k)
+                                                plot_id           <- paste0(\"cX\", plot_category_formatted, k)
                                                 output[[plot_id]] <- renderCanvasXpress({
                                                     plot_function <- getCurrentOutputInfo()$name
                                                     eval(parse(text = paste0(plot_function, \"()\")))
@@ -107,11 +108,14 @@ if (interactive()) {
                                              })
                                              plot_outputs <- lapply(seq(plot_count), function(k) {
                                                 tagList(tags$div(class = \"cxplotdiv\",
-                                                                 tags$div(class = \"cxplotdivtext\", tags$b(paste0(\"cX\", tolower(plot_category), k))),
-                                                                 canvasXpressOutput(paste0(\"cX\", tolower(plot_category), k), width = \"100%\")))
+                                                                 tags$div(class = \"cxplotdivtext\", tags$b(paste0(\"cX\", plot_category_formatted, k))),
+                                                                 canvasXpressOutput(paste0(\"cX\", plot_category_formatted, k), width = \"100%\")))
                                              })
+                                             plot_category_link <- glue(\"https://canvasxpress.org/examples/{tolower(plot_category)}-1.html\")
                                              tabs[i] <- lapply(plot_category,
                                                                tabPanel,
+                                                               tags$a(href = plot_category_link, target = \"_blank\", \"Plot Examples\"),
+                                                               tags$hr(),
                                                                plot_outputs)
                                           }
                                           do.call(tabBox,

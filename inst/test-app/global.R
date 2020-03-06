@@ -11,7 +11,7 @@
 
 
 # -- Setup your Application --
-set_app_parameters(title = "CanvasXpress Test Application",
+set_app_parameters(title = "CanvasXpress Web Testing Application",
                    titleinfo = NULL,
                    loglevel = "DEBUG",
                    showlog = FALSE,
