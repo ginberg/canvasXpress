@@ -1,0 +1,9 @@
+.cxplotdiv {
+    display: inline-block;
+    width: 32%;
+    margin-left:1%;
+    margin-top:1%;
+}
+.cxplotdivtext {
+    text-align:center;
+}
