@@ -2361,8 +2361,9 @@ ul.CanvasXpressList {
     cursor: default;
     list-style: none;
     margin: 0px;
-    overflow: hidden;
+    overflow: auto;
     padding: 2px;
+    height: calc(100% - 100px);
 }
 
 li.CanvasXpressListItemSep {
@@ -2388,6 +2389,10 @@ input.CanvasXpressListItem {
     margin: 0px;
     padding: 1px;
     white-space: nowrap;
+}
+
+input[type=file] {
+    display: block;
 }
 
 div.CanvasXpressListItem {
@@ -2952,7 +2957,7 @@ canvas.CanvasXpressUpload {
     border: 1px solid rgba(35, 82, 124, 0.2);
     border-radius: 6px;
     margin: -1px;
-    background-image: url(https://canvasxpress.org/images/upload.png);
+    background-image: url(https://canvasxpress.org/assets/images/upload.png);
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -2962,6 +2967,19 @@ canvas.CanvasXpress::selection {
     color: rgb(0, 0, 0);
 }
 
+div.CanvasXpressPlay {
+  background-color: rgba(0, 0, 0, 0.1);
+  background-image: url(/assets/images/play.png);
+  background-position-x: 50%;
+  background-position-y: center;
+  background-size: 25%;
+  background-repeat: no-repeat;
+  position: absolute;
+}
+
+div.CanvasXpressPlay:hover {
+  background-color: rgba(0, 0, 0, 0);
+}
 
 /*
  * full-screen-warning-container

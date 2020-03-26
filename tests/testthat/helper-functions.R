@@ -1,6 +1,7 @@
 # helper functions for tests
-library(canvasXpress.data)
 library(htmlwidgets)
+library(canvasXpress.data)
+
 
 if (interactive()) {
     library(testthat)
@@ -10,6 +11,7 @@ if (interactive()) {
 } else {
     source("../cX-ui-functions.R")
 }
+
 
 check_ui_test <- function(result){
     if (interactive()) { print(result) }
