@@ -15,6 +15,4 @@ test_that("cXoncoprint3", {
 
 test_that("cXoncoprint4", {
     check_ui_test(cXoncoprint4())
-
-    warning("tooltip of DAB2 not equal to web example for TCGA:21-5782-01")
 })

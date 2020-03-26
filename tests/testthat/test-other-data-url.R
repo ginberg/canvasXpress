@@ -17,6 +17,4 @@ test_that("Barplot URL data", {
     )
 
     check_ui_test(result)
-
-    warning("context menu not working well: sub menu's are overlapping")
 })
