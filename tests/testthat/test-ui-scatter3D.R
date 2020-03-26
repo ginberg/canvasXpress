@@ -11,6 +11,8 @@ test_that("cXscatter3d2", {
 
 test_that("cXscatter3d3", {
     check_ui_test(cXscatter3d3())
+
+    warning("The loess surface fit appears in an unusual place but it is working as designed")
 })
 
 test_that("cXscatter3d4", {
