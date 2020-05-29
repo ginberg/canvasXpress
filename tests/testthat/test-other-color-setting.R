@@ -57,7 +57,23 @@ test_that("boxplot ColorScheme", {
                            groupingFactors          = list("dose"),
                            smpTitleScaleFontFactor  = 1.8,
                            stringSampleFactors      = list("dose"),
-                           title                    = "Boxplot - ColorScheme: Set1"
+                           title                    = "Boxplot - ColorScheme: Set2"
+    )
+    check_ui_test(result)
+})
+
+test_that("stackedbar custom colors", {
+    y <- read.table(get_data("cX-generic-dat.txt.gz"), header = TRUE, sep = "\t", quote = "", row.names = 1, fill = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+    z <- data.frame(Category = c("A", "B", "C", "D"), stringsAsFactors = F)
+    rownames(z) <- rownames(y)
+    result <- canvasXpress(
+        data             = y,
+        varAnnot         = z,
+        graphOrientation = "horizontal",
+        graphType        = "Stacked",
+        colorBy          = "Category",
+        title            = "Custom colors - should be gray/white/blue/red",
+        colors           = list("gray", "white", "blue", "#FFD703")
     )
     check_ui_test(result)
 })

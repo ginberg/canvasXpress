@@ -1,20 +1,18 @@
 cXarea1 <- function() {
   library(canvasXpress)
-  y=read.table(get_data("cX-area3-dat.txt.gz"), header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
+  y=read.table(get_data("cX-area4-dat.txt.gz"), header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
   canvasXpress(
     data=y,
-    areaType="stacked",
-    colorScheme="ColorSpectrum",
-    colorSpectrum=list("blue", "cyan", "yellow", "red"),
+    colorScheme="GGPlot",
     graphOrientation="vertical",
     graphType="Area",
-    lineType="spline",
+    lineType="rect",
     objectBorderColor=FALSE,
-    objectColorTransparency=0.3,
     showLegend=FALSE,
-    showSampleNames=FALSE,
+    showSampleNames=TRUE,
     showTransition=FALSE,
-    title="Steam Plot"
+    smpLabelRotate=90,
+    smpTitle="time"
   )
 }
 
@@ -28,7 +26,7 @@ cXarea2 <- function() {
     legendPosition="right",
     lineType="spline",
     objectBorderColor=FALSE,
-    objectColorTransparency=0.3,
+    objectColorTransparency=0.7,
     showTransition=FALSE,
     smpLabelInterval=20,
     smpLabelRotate=45,
@@ -42,6 +40,27 @@ cXarea2 <- function() {
 }
 
 cXarea3 <- function() {
+  library(canvasXpress)
+  y=read.table(get_data("cX-area-dat.txt.gz"), header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
+  canvasXpress(
+    data=y,
+    areaType="stacked",
+    colorScheme="Blues",
+    graphOrientation="vertical",
+    graphType="Area",
+    legendPosition="right",
+    lineType="spline",
+    smpLabelInterval=20,
+    smpLabelRotate=45,
+    smpTitle="Year",
+    subtitle="gcookbook - uspopage",
+    title="Age distribution of population in the United State",
+    xAxis2Show=FALSE,
+    xAxisTitle="Number of People (1000's)"
+  )
+}
+
+cXarea4 <- function() {
   library(canvasXpress)
   y=read.table(get_data("cX-area-dat.txt.gz"), header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
   canvasXpress(
@@ -63,48 +82,23 @@ cXarea3 <- function() {
   )
 }
 
-cXarea4 <- function() {
+cXarea5 <- function() {
   library(canvasXpress)
-  y=read.table(get_data("cX-area-dat.txt.gz"), header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
+  y=read.table(get_data("cX-area3-dat.txt.gz"), header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
   canvasXpress(
     data=y,
     areaType="stacked",
-    colorScheme="Blues",
+    colorScheme="ColorSpectrum",
+    colorSpectrum=list("blue", "cyan", "yellow", "red"),
     graphOrientation="vertical",
     graphType="Area",
-    legendPosition="right",
     lineType="spline",
-    smpLabelInterval=20,
-    smpLabelRotate=45,
-    smpTitle="Year",
-    subtitle="gcookbook - uspopage",
-    title="Age distribution of population in the United State",
-    xAxis2Show=FALSE,
-    xAxisTitle="Number of People (1000's)"
-  )
-}
-
-cXarea5 <- function() {
-  library(canvasXpress)
-  y=read.table(get_data("cX-area-dat.txt.gz"), header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
-  canvasXpress(
-    data=y,
-    graphOrientation="vertical",
-    graphType="Area",
-    legendPosition="right",
-    lineType="spline",
-    smpLabelInterval=20,
-    smpLabelRotate=45,
-    smpTitle="Year",
-    subtitle="gcookbook - uspopage",
-    theme="CanvasXpress",
-    title="Age distribution of population in the United State",
-    transformAxis="samples",
-    transformType="zscore",
-    transformedData=TRUE,
-    transparency=0.5,
-    xAxis2Show=FALSE,
-    xAxisTitle="Normalized Scores of Number of People"
+    objectBorderColor=FALSE,
+    objectColorTransparency=0.3,
+    showLegend=FALSE,
+    showSampleNames=FALSE,
+    showTransition=FALSE,
+    title="Steam Plot"
   )
 }
 
@@ -1485,9 +1479,9 @@ cXdensity1 <- function() {
   canvasXpress(
     data=y,
     varAnnot=z,
-    asHistogram=TRUE,
     graphType="Scatter2D",
     hideHistogram=TRUE,
+    histogramData=TRUE,
     showHistogramDensity=TRUE,
     theme="CanvasXpress"
   )
@@ -1500,9 +1494,9 @@ cXdensity2 <- function() {
   canvasXpress(
     data=y,
     varAnnot=z,
-    asHistogram=TRUE,
     graphType="Scatter2D",
     hideHistogram=TRUE,
+    histogramData=TRUE,
     showHistogramDensity=TRUE,
     showHistogramMedian=TRUE,
     theme="CanvasXpress"
@@ -1516,9 +1510,9 @@ cXdensity3 <- function() {
   canvasXpress(
     data=y,
     varAnnot=z,
-    asHistogram=TRUE,
     graphType="Scatter2D",
     hideHistogram=TRUE,
+    histogramData=TRUE,
     showFilledHistogramDensity=TRUE,
     showHistogramDensity=TRUE,
     showHistogramMedian=TRUE,
@@ -1533,9 +1527,9 @@ cXdensity4 <- function() {
   canvasXpress(
     data=y,
     varAnnot=z,
-    asHistogram="sex",
     graphType="Scatter2D",
     hideHistogram=TRUE,
+    histogramData="sex",
     showHistogramDensity=TRUE,
     theme="CanvasXpress"
   )
@@ -1548,9 +1542,9 @@ cXdensity5 <- function() {
   canvasXpress(
     data=y,
     varAnnot=z,
-    asHistogram="sex",
     graphType="Scatter2D",
     hideHistogram=TRUE,
+    histogramData="sex",
     showHistogramDensity=TRUE,
     showHistogramMedian=TRUE,
     theme="CanvasXpress"
@@ -1564,9 +1558,9 @@ cXdensity6 <- function() {
   canvasXpress(
     data=y,
     varAnnot=z,
-    asHistogram="sex",
     graphType="Scatter2D",
     hideHistogram=TRUE,
+    histogramData="sex",
     showFilledHistogramDensity=TRUE,
     showHistogramDensity=TRUE,
     showHistogramMedian=TRUE,
@@ -1581,10 +1575,10 @@ cXdensity7 <- function() {
   canvasXpress(
     data=y,
     varAnnot=z,
-    asHistogram="sex",
     graphType="Scatter2D",
     hideHistogram=FALSE,
     histogramBins=20,
+    histogramData="sex",
     showFilledHistogramDensity=TRUE,
     showHistogramDensity=TRUE,
     showHistogramMedian=TRUE,
@@ -1611,6 +1605,84 @@ cXdensity8 <- function() {
     xAxisHistogramShow=TRUE,
     yAxisHistogramHeight=150,
     yAxisHistogramShow=TRUE
+  )
+}
+
+cXdensity9 <- function() {
+  library(canvasXpress)
+  y=read.table(get_data("cX-irist-dat.txt.gz"), header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
+  z=read.table(get_data("cX-irist-var.txt.gz"), header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
+  canvasXpress(
+    data=y,
+    varAnnot=z,
+    graphType="Scatter2D",
+    hideHistogram=TRUE,
+    histogramData=TRUE,
+    histogramStat="count",
+    segregateVariablesBy=list("Species"),
+    showFilledHistogramDensity=TRUE,
+    showHistogramDensity=TRUE,
+    showHistogramMedian=FALSE,
+    theme="CanvasXpress"
+  )
+}
+
+cXdensity10 <- function() {
+  library(canvasXpress)
+  y=read.table(get_data("cX-irist-dat.txt.gz"), header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
+  z=read.table(get_data("cX-irist-var.txt.gz"), header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
+  canvasXpress(
+    data=y,
+    varAnnot=z,
+    colorBy="Species",
+    graphType="Scatter2D",
+    hideHistogram=TRUE,
+    histogramData=TRUE,
+    histogramStat="count",
+    segregateVariablesBy=list("Species"),
+    showFilledHistogramDensity=TRUE,
+    showHistogramDensity=TRUE,
+    showHistogramMedian=FALSE,
+    theme="CanvasXpress"
+  )
+}
+
+cXdensity11 <- function() {
+  library(canvasXpress)
+  y=read.table(get_data("cX-irist-dat.txt.gz"), header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
+  z=read.table(get_data("cX-irist-var.txt.gz"), header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
+  canvasXpress(
+    data=y,
+    varAnnot=z,
+    graphType="Scatter2D",
+    hideHistogram=TRUE,
+    histogramData=TRUE,
+    histogramStat="count",
+    segregateSamplesBy=list("sample"),
+    showFilledHistogramDensity=TRUE,
+    showHistogramDensity=TRUE,
+    showHistogramMedian=FALSE,
+    theme="CanvasXpress"
+  )
+}
+
+cXdensity12 <- function() {
+  library(canvasXpress)
+  y=read.table(get_data("cX-irist-dat.txt.gz"), header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
+  z=read.table(get_data("cX-irist-var.txt.gz"), header=TRUE, sep="\t", quote="", row.names=1, fill=TRUE, check.names=FALSE, stringsAsFactors=FALSE)
+  canvasXpress(
+    data=y,
+    varAnnot=z,
+    colorBy="Species",
+    graphType="Scatter2D",
+    hideHistogram=TRUE,
+    histogramData=TRUE,
+    histogramStat="count",
+    segregateSamplesBy=list("sample"),
+    showFilledHistogramDensity=TRUE,
+    showHistogramDensity=TRUE,
+    showHistogramMedian=FALSE,
+    theme="CanvasXpress"
   )
 }
 
@@ -3206,6 +3278,8 @@ cXmap10 <- function() {
     leafletLayer=FALSE,
     legendPosition="top",
     motionBy="Date",
+    sizeBy="Deaths",
+    sizeByContinuous=TRUE,
     title="Geographic Distribution for COVID-19",
     topoJSON="https://www.canvasxpress.org/data/world.geo.json"
   )
@@ -4938,11 +5012,11 @@ cXtcga6 <- function() {
   canvasXpress(
     data=y,
     varAnnot=z,
-    asHistogram=TRUE,
     colorScheme="JCO",
     graphType="Scatter2D",
     hideHistogram=FALSE,
     histogramBins=15,
+    histogramData=TRUE,
     histogramStagger=TRUE,
     layoutTopology="1X3",
     legendColumns=3,
@@ -4964,12 +5038,12 @@ cXtcga7 <- function() {
   canvasXpress(
     data=y,
     varAnnot=z,
-    asHistogram=TRUE,
     colorBy="dataset",
     colorScheme="JCO",
     graphType="Scatter2D",
     hideHistogram=FALSE,
     histogramBins=15,
+    histogramData=TRUE,
     histogramStagger=TRUE,
     layoutTopology="1X3",
     legendColumns=3,
@@ -4992,13 +5066,13 @@ cXtcga8 <- function() {
   canvasXpress(
     data=y,
     varAnnot=z,
-    asHistogram=TRUE,
     colorBy="dataset",
     colorKey=list(dataset=list(BRCA="#0073c2", LUSC="#efc000", OV="#868686")),
     colorScheme="JCO",
     graphType="Scatter2D",
     hideHistogram=TRUE,
     histogramBins=15,
+    histogramData=TRUE,
     histogramStagger=TRUE,
     layoutTopology="1X3",
     legendColumns=3,
